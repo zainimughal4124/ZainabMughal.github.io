@@ -37,7 +37,7 @@
 
     function coverPage(c, a) {
         return leafHTML("al-cover", `
-          ${a.coverImage ? `<img class="al-cover-img" src="${src(a.coverImage)}" alt="" draggable="false" decoding="async">` : ""}
+          ${a.coverImage ? `<div class="al-cover-art" style="--cover:url(&quot;${src(a.coverImage)}&quot;)"></div>` : ""}
           <div class="al-spine"></div>
           <div class="al-panel">
             <span class="al-diamond al-t"></span><span class="al-diamond al-b"></span>
@@ -301,6 +301,14 @@
                 d.classList.toggle("al-on", i === cur);
                 d.setAttribute("aria-current", i === cur ? "page" : "false");
             });
+            // on phones the page list is one scrolling row: keep the current page in view
+            const nav = dots[cur].parentElement;
+            if (nav.scrollWidth > nav.clientWidth) {
+                nav.scrollTo({
+                    left: dots[cur].offsetLeft - nav.offsetLeft - (nav.clientWidth - dots[cur].offsetWidth) / 2,
+                    behavior: reduceMotion.matches ? "auto" : "smooth",
+                });
+            }
             const coverOnly = leaves.length === 1;
             hint.classList.remove("al-pulse");
             hint.textContent = coverOnly ? "New pieces coming soon"
@@ -464,6 +472,7 @@
 
         let startX = null;
         book.addEventListener("pointerdown", (e) => (startX = e.clientX));
+        book.addEventListener("pointercancel", () => (startX = null));
         book.addEventListener("pointerup", (e) => {
             if (startX === null) return;
             const dx = e.clientX - startX;
@@ -552,9 +561,11 @@
                 <span><strong>${esc(p.name)}</strong>${p.text ? `<br>${esc(p.text)}` : ""}</span></li>`).join("");
         });
 
+        const touch = window.matchMedia("(hover: none)").matches;
         document.querySelectorAll("[data-album-open]").forEach((button) => {
             const data = albums[button.dataset.albumOpen];
             if (data) button.addEventListener("click", () => openAlbum(data));
+            if (touch) button.textContent = button.textContent.replace(/^Click/, "Tap");
         });
     }
 

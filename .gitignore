@@ -1,0 +1,35 @@
+# ---------------------------------------------------------
+# Zainab Shahnawaz portfolio: only the site code goes to GitHub.
+# Uploaded:  index.html, styles.css, script.js, album.css, album.js, fonts/, Files/
+# Kept local: pictures, the collection album photos and working files
+# ---------------------------------------------------------
+
+# Pictures and the Collection-I album photos
+Images/
+collection 1/
+
+# Image files anywhere else in the project
+*.jpg
+*.jpeg
+*.png
+*.jfif
+*.webp
+*.gif
+
+# WhatsApp exports and other archives
+*.zip
+
+# Working files, not part of the site
+saved/
+tools/
+
+# Secrets (keep any keys out of the repo)
+.env
+.env.*
+
+# Editor / OS clutter
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
+.DS_Store

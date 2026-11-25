@@ -1,27 +1,18 @@
 # ---------------------------------------------------------
-# Zainab Shahnawaz portfolio: only the site code goes to GitHub.
-# Uploaded:  index.html, styles.css, script.js, album.css, album.js, fonts/, Files/
-# Kept local: pictures, the collection album photos and working files
+# Zainab Shahnawaz portfolio
+# Uploaded: the site code, fonts, Files/ (CV), Images/ and collection 1/ (album photos)
+# Kept local: working folders, archives and duplicates
 # ---------------------------------------------------------
 
-# Pictures and the Collection-I album photos
-Images/
-collection 1/
+# Working folders, not part of the site
+saved/
+tools/
 
-# Image files anywhere else in the project
-*.jpg
-*.jpeg
-*.png
-*.jfif
-*.webp
-*.gif
+# Original WhatsApp pictures (the album uses the renamed copies)
+WhatsApp Image*
 
 # WhatsApp exports and other archives
 *.zip
-
-# Working files, not part of the site
-saved/
-tools/
 
 # Secrets (keep any keys out of the repo)
 .env
